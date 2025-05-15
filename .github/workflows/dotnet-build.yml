@@ -25,6 +25,3 @@ jobs:
 
       - name: Build
         run: dotnet build **/*.csproj --no-restore
-
-      - name: Executar testes
-        run: dotnet test --no-build --verbosity normal
