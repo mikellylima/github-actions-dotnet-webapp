@@ -8,7 +8,7 @@ on:
     - cron: '0 * * * *'  # Executa a cada hora (em UTC)
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
