@@ -1,0 +1,30 @@
+name: Build e Deploy WebApp .NET Core
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # Executa a cada hora (em UTC)
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.6'
+
+      - name: Restore dependencies
+        run: dotnet restore **/*.csproj
+
+      - name: Build
+        run: dotnet build **/*.csproj --no-restore
+
+      - name: Executar testes
+        run: dotnet test --no-build --verbosity normal
